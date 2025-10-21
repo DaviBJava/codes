@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. Pergunte ao usuário o nome dele e guarde em uma variável.
+        let nome = prompt("Qual é o seu nome?");
+
+        // 2. Pergunte o ano em que ele nasceu e guarde em uma variável.
+        // Lembre-se de CONVERTER para número!
+        let anoNascimento = Number(prompt("Em que ano você nasceu?"));
+
+        // 3. Calcule a idade aproximada. (Vamos usar o ano atual: 2025)
+        const anoAtual = 2025;
+        let idadeAproximada = anoAtual - anoNascimento;
+
+        // 4. Exiba uma mensagem completa e amigável usando Template Literals.
+        let mensagemFinal = `Olá, ${nome}! Você tem (ou vai fazer) ${idadeAproximada} anos em ${anoAtual}.`;
+
+        // 5. Mostre a mensagem final em um alert!
+        alert(mensagemFinal);
+    </script>
+</body>
+</html>

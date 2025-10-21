@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+</head>
+<body>
+    <script>
+// JOGO DE ADIVINHAÇÃO - NÍVEL DIFÍCIL + JOGAR NOVAMENTE
+
+// O objeto 'jogador' fica FORA da função para persistir entre as partidas.
+const jogador = {
+  nome: "",
+  recorde: Infinity // Começa com infinito para que a primeira pontuação seja sempre menor
+};
+
+function iniciarJogo() {
+  // Pergunta o nome do jogador apenas uma vez, no início da primeira partida.
+  if (!jogador.nome) {
+    jogador.nome = prompt("Olá! Qual é o seu nome?");
+    // Se o jogador cancelar, damos um nome padrão.
+    if (!jogador.nome) {
+        jogador.nome = "Visitante";
+    }
+  }
+
+  // <<-- NOVO: Loop principal que controla se o jogo continua -->>
+  while (true) {
+    
+    // 1. PREPARAÇÃO (Estas variáveis são resetadas a cada nova partida)
+    const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    let palpite;
+    let tentativas = 0;
+    const palpitesAnteriores = [];
+
+    alert(`Olá, ${jogador.nome}! O jogo vai começar. Boa sorte!
+    \nSeu recorde atual é de ${jogador.recorde === Infinity ? 'nenhuma partida jogada' : jogador.recorde + ' tentativas'}.`);
+    
+    console.log("Número secreto (para teste):", numeroSecreto);
+
+    // 2. O JOGO (Loop interno de adivinhação)
+    while (palpite != numeroSecreto) {
+      palpite = Number(prompt("Adivinhe o número entre 1 e 100:"));
+
+      if (palpite === 0 || !palpite) {
+        alert("Jogo cancelado.");
+        break; // Sai do loop de adivinhação, mas não do loop principal
+      }
+
+      palpitesAnteriores.push(palpite);
+      tentativas++;
+
+      // 3. A LÓGICA DAS DICAS
+      if (palpite < numeroSecreto) {
+        alert("O número secreto é MAIOR! Tente novamente.");
+      } else if (palpite > numeroSecreto) {
+        alert("O número secreto é MENOR! Tente novamente.");
+      }
+    }
+
+    // 4. FIM DE JOGO
+    // Esta parte só executa se o jogador acertou (não se ele cancelou)
+    if (palpite == numeroSecreto) {
+      let mensagemFinal = `Parabéns, ${jogador.nome}! Você acertou o número secreto ${numeroSecreto} em ${tentativas} tentativas!
+      \nSeus palpites foram: ${palpitesAnteriores.join(", ")}`;
+
+      // Lógica para verificar e atualizar o recorde
+      if (tentativas < jogador.recorde) {
+        mensagemFinal += `\n\n🎉 NOVO RECORDE! 🎉 Seu novo recorde é de ${tentativas} tentativas.`;
+        jogador.recorde = tentativas;
+      } else {
+        mensagemFinal += `\n\nSeu recorde pessoal ainda é de ${jogador.recorde} tentativas. Continue tentando!`;
+      }
+
+      alert(mensagemFinal);
+    }
+    
+    // <<-- NOVO: Pergunta se o usuário quer jogar novamente -->>
+    const jogarNovamente = confirm("Deseja jogar novamente?");
+    
+    if (jogarNovamente === false) {
+      break; // Sai do loop principal 'while(true)' e encerra o jogo.
+    }
+  } // Fim do loop principal 'while(true)'
+
+  alert(`Obrigado por jogar, ${jogador.nome}! Volte sempre.`);
+}
+
+// Chama a função para iniciar a primeira partida
+iniciarJogo();
+
+    </script>
+</body>
+</html>
+
+<body>
+    
+</body>
+</html>

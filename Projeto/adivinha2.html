@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+</head>
+<body>
+    <script>
+// JOGO DE ADIVINHAÇÃO - NÍVEL MÉDIO
+
+// <-- NOVO: Todo o jogo está dentro desta função
+function iniciarJogo() {
+  // 1. PREPARAÇÃO
+  const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+  let palpite;
+  let tentativas = 0;
+  const palpitesAnteriores = [];
+
+  alert("Bem-vindo ao Jogo de Adivinhação!");
+  console.log("Número secreto (para teste):", numeroSecreto);
+
+  // 2. O JOGO (LOOP)
+  while (palpite != numeroSecreto) {
+    palpite = Number(prompt("Adivinhe o número entre 1 e 100:"));
+
+    if (palpite === 0 || !palpite) {
+      alert("Jogo cancelado.");
+      break;
+    }
+
+    palpitesAnteriores.push(palpite);
+    tentativas++;
+
+    // 3. A LÓGICA DAS DICAS
+    if (palpite < numeroSecreto) {
+      alert("O número secreto é MAIOR! Tente novamente.");
+    } else if (palpite > numeroSecreto) {
+      alert("O número secreto é MENOR! Tente novamente.");
+    }
+  }
+
+  // 4. FIM DE JOGO
+  if (palpite == numeroSecreto) {
+      alert(`Parabéns! Você acertou o número secreto ${numeroSecreto} em ${tentativas} tentativas!
+      \nSeus palpites foram: ${palpitesAnteriores.join(", ")}`);
+  }
+}
+
+// <-- NOVO: Chama a função para iniciar o jogo
+iniciarJogo();
+
+    </script>
+</body>
+</html>
+
+<body>
+    
+</body>
+</html>

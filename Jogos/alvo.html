@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Alvo - Tela Cheia</title>
+    <style>
+        /* CSS para estilizar o jogo */
+        html, body {
+            height: 100vh; /* Faz a página ocupar 100% da altura da tela */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* A MUDANÇA PRINCIPAL: desativa a barra de rolagem */
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        body {
+            display: flex; /* Usa flexbox para organizar o conteúdo */
+            flex-direction: column; /* Organiza os itens em uma coluna (verticalmente) */
+            text-align: center;
+            color: #333;
+            user-select: none;
+        }
+
+        h1 {
+            color: #4682b4;
+            margin-top: 15px;  /* Ajuste de margem para telas menores */
+            margin-bottom: 10px;
+            flex-shrink: 0; /* Impede que o título encolha */
+        }
+
+        #stats-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto 10px auto;
+            flex-wrap: wrap;
+            flex-shrink: 0; /* Impede que o placar encolha */
+        }
+
+        .score-info {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 5px 15px;
+        }
+
+        #score, #final-score, #time-left {
+            color: #DC143C;
+        }
+
+        #game-container {
+            position: relative;
+            width: 95vw; /* Usa a largura da tela */
+            max-width: 800px;
+            flex-grow: 1; /* FAZ O CONTAINER DO JOGO CRESCER PARA OCUPAR O ESPAÇO RESTANTE */
+            border: 3px solid #4682b4;
+            margin: 0 auto 20px auto; /* Ajuste de margem */
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: default;
+        }
+
+        #target {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            cursor: crosshair;
+            transition: top 0.2s ease-in-out, left 0.2s ease-in-out;
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #ring1 { width: 120px; height: 120px; background-color: #2E2E2E; }
+        #ring2 { width: 80px; height: 80px; background-color: #4169E1; }
+        #ring3 { width: 40px; height: 40px; background-color: #DC143C; }
+        #bullseye { width: 20px; height: 20px; background-color: #FFD700; }
+
+        .overlay-screen {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        #difficulty-screen { background-color: rgba(0, 0, 0, 0.7); }
+        #game-over-screen { background-color: rgba(0, 0, 0, 0.8); }
+
+        .action-button {
+            padding: 10px 20px; font-size: 1.2em; border: none; border-radius: 5px; cursor: pointer; background-color: #4682b4; color: white; margin-top: 20px; transition: background-color 0.3s;
+        }
+        .action-button:hover { background-color: #5a9bd3; }
+        
+        .difficulty-btn {
+            padding: 10px 30px; font-size: 1.5em; border: 2px solid #f0f8ff; border-radius: 8px; cursor: pointer; background-color: transparent; color: #f0f8ff; margin: 10px; transition: background-color 0.3s, color 0.3s;
+        }
+        .difficulty-btn:hover { background-color: #f0f8ff; color: #4682b4; }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Alvo Móvel</h1>
+    <div id="stats-container">
+        <p class="score-info">Pontuação: <span id="score">0</span></p>
+        <p class="score-info">Cliques: <span id="hits-count">0</span> / 10</p>
+        <p class="score-info">Tempo: <span id="time-left">--</span>s</p>
+    </div>
+
+    <div id="game-container">
+        <div id="difficulty-screen" class="overlay-screen">
+            <h2>Escolha a Dificuldade</h2>
+            <button id="easy-btn" class="difficulty-btn">Fácil</button>
+            <button id="hard-btn" class="difficulty-btn">Difícil</button>
+        </div>
+
+        <div id="game-over-screen" class="overlay-screen" style="display: none;">
+            <h2 id="game-over-reason">Fim de Jogo!</h2>
+            <p class="score-info">Sua pontuação final foi: <span id="final-score">0</span></p>
+            <button id="restart-button" class="action-button">Jogar Novamente</button>
+        </div>
+        
+        <div id="target" style="display: none;">
+            <div id="ring1" class="ring"><div id="ring2" class="ring"><div id="ring3" class="ring"><div id="bullseye" class="ring"></div></div></div></div>
+        </div>
+    </div>
+
+    <script>
+        // --- O JavaScript permanece exatamente o mesmo da versão anterior ---
+        const gameContainer = document.getElementById('game-container');
+        const target = document.getElementById('target');
+        const scoreDisplay = document.getElementById('score');
+        const hitsDisplay = document.getElementById('hits-count');
+        const timeLeftDisplay = document.getElementById('time-left');
+        
+        const difficultyScreen = document.getElementById('difficulty-screen');
+        const gameOverScreen = document.getElementById('game-over-screen');
+        
+        const finalScoreDisplay = document.getElementById('final-score');
+        const gameOverReason = document.getElementById('game-over-reason');
+        const easyBtn = document.getElementById('easy-btn');
+        const hardBtn = document.getElementById('hard-btn');
+        const restartButton = document.getElementById('restart-button');
+
+        const bullseye = document.getElementById('bullseye');
+        const ring3 = document.getElementById('ring3');
+        const ring2 = document.getElementById('ring2');
+        const ring1 = document.getElementById('ring1');
+
+        let score = 0;
+        let hits = 0;
+        const MAX_HITS = 10;
+        let timeLeft = 0;
+        let gameInterval;
+        let timerInterval;
+        let isGameActive = false;
+        
+        const EASY_MODE = { speed: 1500, time: 60 };
+        const HARD_MODE = { speed: 750, time: 30 };
+
+        function moveTarget() {
+            const containerWidth = gameContainer.offsetWidth;
+            const containerHeight = gameContainer.offsetHeight;
+            const targetWidth = target.offsetWidth;
+            const targetHeight = target.offsetHeight;
+            const maxX = containerWidth - targetWidth;
+            const maxY = containerHeight - targetHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            target.style.left = randomX + 'px';
+            target.style.top = randomY + 'px';
+        }
+
+        function registerHit(points) {
+            if (!isGameActive || hits >= MAX_HITS) return;
+            score += points;
+            hits += 1;
+            scoreDisplay.textContent = score;
+            hitsDisplay.textContent = hits;
+
+            if (hits >= MAX_HITS) {
+                endGame("Todos os cliques usados!");
+            } else {
+                moveTarget();
+            }
+        }
+
+        function updateTimer() {
+            timeLeft--;
+            timeLeftDisplay.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                endGame("Tempo Esgotado!");
+            }
+        }
+
+        function initGame(difficulty) {
+            score = 0;
+            hits = 0;
+            timeLeft = difficulty.time;
+            isGameActive = true;
+
+            scoreDisplay.textContent = score;
+            hitsDisplay.textContent = hits;
+            timeLeftDisplay.textContent = timeLeft;
+
+            difficultyScreen.style.display = 'none';
+            gameOverScreen.style.display = 'none';
+            target.style.display = 'block';
+
+            moveTarget();
+            clearInterval(gameInterval);
+            clearInterval(timerInterval);
+            gameInterval = setInterval(moveTarget, difficulty.speed);
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function endGame(reason) {
+            isGameActive = false;
+            clearInterval(gameInterval);
+            clearInterval(timerInterval);
+            target.style.display = 'none';
+            finalScoreDisplay.textContent = score;
+            gameOverReason.textContent = reason;
+            gameOverScreen.style.display = 'flex';
+        }
+
+        easyBtn.addEventListener('click', () => initGame(EASY_MODE));
+        hardBtn.addEventListener('click', () => initGame(HARD_MODE));
+
+        restartButton.addEventListener('click', () => {
+            gameOverScreen.style.display = 'none';
+            difficultyScreen.style.display = 'flex';
+            timeLeftDisplay.textContent = '--';
+        });
+
+        bullseye.addEventListener('click', e => { e.stopPropagation(); registerHit(100); });
+        ring3.addEventListener('click', e => { e.stopPropagation(); registerHit(50); });
+        ring2.addEventListener('click', e => { e.stopPropagation(); registerHit(25); });
+        ring1.addEventListener('click', e => { e.stopPropagation(); registerHit(10); });
+
+        gameContainer.addEventListener('click', () => {
+            if (isGameActive) {
+                registerHit(0);
+            }
+        });
+    </script>
+</body>
+</html>

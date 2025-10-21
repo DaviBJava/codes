@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 9</title>
+</head>
+<body>
+    <script>
+let pessoa = {
+  nome: "Ana",
+  idade: 30
+};
+
+pessoa.idade = 31; 
+console.log(pessoa.idade); // A idade agora é 31
+console.log(pessoa["nome"]); // Acessa a propriedade 'nome' usando colchetes
+
+pessoa.sobrenome = "Silva"; 
+console.log(pessoa.sobrenome); // Acessa a nova propriedade 'sobrenome'
+
+pessoa.cidade = "São Paulo"; 
+console.log(pessoa.cidade); // Acessa a nova propriedade 'cidade'
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio</title>
+</head>
+<body>
+    
+
+    <script>
+// 1. Crie um objeto chamado 'carro'.
+let carro = {
+  // 2. Adicione as propriedades: marca (string), modelo (string), ano (number)
+  marca: "Fiat",
+  modelo: "Uno",
+  ano: 2001,
+  
+  // 3. Adicione a propriedade 'ligado' (boolean), iniciando como false.
+  ligado: false,
+
+  // 4. Adicione um método chamado 'ligarDesligar'.
+  ligarDesligar: function() {
+    // 5. Use 'this' para acessar a propriedade 'ligado'.
+    if (this.ligado === true) {
+      // Se estiver ligado, desliga e mostra a mensagem.
+      this.ligado = false;
+      console.log("O carro foi desligado.");
+    } else {
+      // Se estiver desligado, liga e mostra a mensagem.
+      this.ligado = true;
+      console.log("O carro foi ligado.");
+    }
+  }
+};
+
+// 6. Teste o método!
+console.log("O carro está ligado?", carro.ligado); // false
+carro.ligarDesligar(); // "O carro foi ligado."
+console.log("E agora, está ligado?", carro.ligado); // true
+carro.ligarDesligar(); // "O carro foi desligado."
+console.log("E agora, está ligado?", carro.ligado); // false
+    </script>
+</body>
+</html>

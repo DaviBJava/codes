@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+for (let i = 1; i <= 20; i++) {
+  if (i % 7 === 0) {
+    console.log(`Encontrei o primeiro número divisível por 7: ${i}`);
+    break; // Sai do loop, não precisa procurar mais.
+  }
+  console.log(`Testando ${i}...`);
+}
+
+for (let i = 1; i <= 10; i++) {
+  if (i % 2 === 0) {
+    continue; // Se o número for par, pula o console.log abaixo
+  }
+  console.log(`Número ímpar: ${i}`);
+}
+
+
+    </script>
+</body>
+</html>
