@@ -1,0 +1,34 @@
+/* Isso é um comentário em CSS */
+
+body {
+  background-color: #1A1A1A;  /* Um fundo bem escuro */
+  color: #E0E0E0;            /* Um texto branco/cinza claro */
+}
+
+h1 {
+  color: #FFA500; /* Laranja (só um exemplo) */
+}
+
+h2 {
+  color: #00A9E0; /* Um tom de azul */
+}
+
+a:link {
+  color: #00A9E0; /* Cor do link (azul) */
+}
+
+a:visited {
+  color: #00A9E0; /* MESMA cor, para não ficar roxo! */
+}
+
+/* Estilizando APENAS os <li> marcados com a classe */
+.destaque {
+  color: #00BCD4;  /* Um azul-ciano brilhante */
+  font-weight: bold; /* Deixa o texto todo em negrito */
+}
+
+/* Estilizando APENAS a seção de contato */
+#contato {
+  background-color: #252525; /* Um cinza um pouco mais claro que o fundo */
+  padding: 15px; /* Uma folga interna */
+}

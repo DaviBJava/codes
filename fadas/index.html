@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta Literária - Contos de Fadas</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Gire a Roleta e Adivinhe o Conto!</h1>
+        
+        <div class="roulette-wrapper">
+            <div class="pointer"></div> 
+            
+            <div id="roulette-wheel">
+                </div>
+            <button id="spin-button" class="btn-spin">Girar Roleta</button>
+        </div>
+
+        <div id="game-area" class="game-box">
+            <br>
+            <p class="instruction">Tente Adivinhar o Conto de Fadas:</p>
+            <p id="clue-text" class="clue-display">Clique em 'Girar Roleta' para começar!</p>
+            
+            <button id="reveal-button" class="btn-reveal" style="display: none;">Revelar Resposta!</button>
+            
+            <div id="result-area" class="result-display">
+                <img id="character-image" src="" alt="Personagem do Conto de Fadas" style="display: none;">
+                <p id="story-name" class="story-title" style="display: none;"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
