@@ -1,6 +1,6 @@
 const items = [
     { name: "Capa Vermelha", clue: "Quem a vestia ao visitar a avó e encontrou um lobo falante?", story: "Chapeuzinho Vermelho", character: "Chapeuzinho Vermelho", image: "imagens/red_hood.png" },
-    { name: "Pão / Barinha", clue: "Quem usou migalhas para tentar marcar o caminho e se perdeu na floresta?", story: "João e Maria", character: "João e Maria", image: "imagens/joao_e_maria.png" },
+    { name: "Pão / Farinha", clue: "Quem usou migalhas para tentar marcar o caminho e se perdeu na floresta?", story: "João e Maria", character: "João e Maria", image: "imagens/joao_e_maria.png" },
     { name: "Maçã Envenenada", clue: "Quem a mordeu e caiu em sono profundo, esperando um beijo de amor?", story: "Branca de Neve e os Sete Anões", character: "Branca de Neve", image: "imagens/branca_de_neve.png" },
     { name: "Feijões Mágicos", clue: "Quem os plantou no jardim e subiu em um caule gigante até a terra de um gigante?", story: "João e o Pé de Feijão", character: "João", image: "imagens/feijao.png" },
     { name: "Tijolos e Palha", clue: "Quem construiu casas diferentes para se proteger do Lobo Mau?", story: "Os Três Porquinhos", character: "Os Três Porquinhos", image: "imagens/porcos.png" },
@@ -8,7 +8,7 @@ const items = [
     { name: "Uma Rosa", clue: "Quem a amava muito e a protegia com um globo de vidro em seu pequeno planeta?", story: "O Pequeno Príncipe", character: "Pequeno Príncipe", image: "imagens/principe.png" },
     { name: "Chave Antiga", clue: "Quem a usou para abrir um portão secreto e encontrar um lugar cheio de vida e mistérios?", story: "O Jardim Secreto", character: "Mary Lennox", image: "imagens/jardim.png" },
     { name: "Um Machado", clue: "Quem a visitava e pedia suas partes (folhas, galhos, tronco) ao longo da vida para ser feliz?", story: "A Árvore Generosa", character: "O Menino", image: "imagens/generosa.png" },
-    { name: "Um Rochedo", clue: "Qual lugar era o trono do rei Mufasa e de onde ele ensinava seu filhote sobre o 'ciclo da vida'?", story: "O Rei Leão (Disney)", character: "Simba", image: "imagens/rei.png" }
+    { name: "Um Rochedo", clue: "Quem era o leão que sentava no trono e ensinava seu filhote sobre o 'ciclo da vida'?", story: "O Rei Leão (Disney)", character: "Simba", image: "imagens/rei.png" }
 ];
 
 // --- Elementos HTML ---

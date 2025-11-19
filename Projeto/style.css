@@ -1,34 +1,194 @@
-/* Isso é um comentário em CSS */
-
-body {
-  background-color: #1A1A1A;  /* Um fundo bem escuro */
-  color: #E0E0E0;            /* Um texto branco/cinza claro */
+/* --- Aula 19: Configuração Global do Box Model --- */
+* {
+  box-sizing: border-box;
 }
 
+/* --- Aula 16, 18, 20, 24: Estilos Gerais do Body --- */
+body {
+  /* ATUALIZAÇÃO DA AULA 24: GRADIENTE */
+  background-color: #1A1A1A;  /* Cor de fallback (segurança) */
+  background-image: linear-gradient(to bottom, #222, #111); /* Gradiente sutil */
+  
+  color: #E0E0E0;            /* Texto cinza claro */
+  font-family: Arial, Helvetica, sans-serif; /* Fontes */
+  line-height: 1.6;           /* Altura da linha (legibilidade) */
+  font-size: 16px;            /* Tamanho base da fonte */
+}
+
+/* --- Aula 19: Container Principal --- */
+.container {
+  width: 80%;       /* O site ocupa 80% da largura da tela */
+  max-width: 1200px;  /* Limite máximo em telas muito grandes */
+  margin: 0 auto;   /* Truque mágico para centralizar */
+}
+
+/* --- Aula 16, 20, 22: Estilos de Título --- */
 h1 {
-  color: #FFA500; /* Laranja (só um exemplo) */
+  color: #FFA500; /* Laranja */
+  text-align: center;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra no texto */
+  border-bottom: 2px solid #555; /* Linha sutil abaixo */
+  padding-bottom: 15px; /* Espaço entre o título e a linha */
 }
 
 h2 {
-  color: #00A9E0; /* Um tom de azul */
+  color: #00A9E0; /* Azul */
+  text-align: center;
+  font-size: 1.8rem;
 }
 
+/* --- Aula 16, 20: Estilos de Links --- */
 a:link {
-  color: #00A9E0; /* Cor do link (azul) */
+  color: #00A9E0;
+  text-decoration: none; /* Remove o sublinhado */
 }
 
 a:visited {
-  color: #00A9E0; /* MESMA cor, para não ficar roxo! */
+  color: #00A9E0;
+  text-decoration: none; /* Mantém a cor, não fica roxo */
 }
 
-/* Estilizando APENAS os <li> marcados com a classe */
+a:hover {
+  text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* --- Aula 19, 22: Estilos Padrão das Seções --- */
+section {
+  padding: 20px;      /* 20px de "respiro" interno */
+  margin-top: 25px;   /* 25px de espaço separando uma da outra */
+  border-radius: 8px; /* Cantos arredondados! */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  background-color: #222; /* Cor de fundo padrão das seções */
+}
+
+/* --- Aula 19, 22: Estilos para Imagens e Vídeos --- */
+img, iframe {
+  border-radius: 8px; /* Cantos arredondados */
+  max-width: 100%;    /* Garante que não "vazem" da tela */
+}
+
+/* --- Aula 19: Classe para Centralizar Imagens --- */
+.img-center {
+  display: block;     /* A imagem se comporta como um bloco */
+  margin-left: auto;  /* Margem automática na esquerda */
+  margin-right: auto; /* Margem automática na direita */
+  margin-bottom: 20px;/* Um espaço abaixo da imagem */
+}
+
+/* --- Aula 22: Bônus para Listas --- */
+ul, ol {
+  padding-left: 30px; /* Mais espaço para os marcadores */
+}
+
+/* --- Aula 17: Classe de Destaque --- */
 .destaque {
   color: #00BCD4;  /* Um azul-ciano brilhante */
   font-weight: bold; /* Deixa o texto todo em negrito */
 }
 
-/* Estilizando APENAS a seção de contato */
+/* --- Aula 21: Estilos do Menu de Navegação --- */
+nav ul {
+  list-style-type: none; /* Remove as "bolinhas" da lista */
+  padding: 0;
+  text-align: center; /* Centraliza o menu */
+  background-color: #252525;
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+nav li {
+  display: inline-block; /* Faz os <li> ficarem lado a lado */
+  margin: 0 10px; /* Adiciona um espaço entre os itens */
+}
+
+/* --- Aula 21: Estilos do Selo "NOVO!" --- */
+
+/* 1. O "Pai" (h2) vira a âncora */
+section#dicas h2 {
+  position: relative; 
+}
+
+/* 2. O "Filho" (.selo) vira o flutuante */
+.selo {
+  position: absolute;   /* Remove do fluxo */
+  top: -10px;           /* Posiciona -10px (para cima) do topo do H2 */
+  right: 10px;          /* Posiciona 10px da direita do H2 */
+  
+  background-color: #FFA500; /* Cor laranja */
+  color: #1A1A1A;           /* Texto escuro */
+  font-size: 0.8rem;         /* Letra menor */
+  padding: 3px 6px;
+  border-radius: 4px;
+  opacity: 0.9;            /* Levemente transparente */
+}
+
+/* --- Aula 17, 19, 22: Estilos da Seção de Contato --- */
 #contato {
-  background-color: #252525; /* Um cinza um pouco mais claro que o fundo */
-  padding: 15px; /* Uma folga interna */
+  background-color: #252525; /* Um cinza um pouco mais claro */
+  padding: 15px;
+  border: 1px solid #555;
+}
+
+/* --- Aula 19 (Bônus): Estilos dos Campos do Formulário --- */
+input[type="text"],
+input[type="email"],
+textarea,
+button {
+  width: 100%; /* Faz os campos ocuparem 100% */
+  padding: 10px; /* Adiciona um "respiro" interno */
+  margin-top: 5px; /* Um espaço acima deles */
+  border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #E0E0E0;
+  font-family: Arial, Helvetica, sans-serif; /* Garante a mesma fonte */
+  font-size: 1rem;
+}
+
+button {
+  background-color: #00A9E0; /* Cor azul do botão */
+  color: #FFFFFF; /* Texto branco */
+  font-weight: bold;
+  cursor: pointer; /* Muda o mouse para "mãozinha" */
+}
+
+button:hover {
+  background-color: #007A9E; /* Cor mais escura no hover */
+}
+
+
+/* ===================================================
+   NOVO CÓDIGO DA AULA 24: DESIGN RESPONSIVO
+   Este bloco DEVE ficar no final do arquivo.
+   ===================================================
+*/
+
+/* Breakpoint para Tablets e Celulares (Tudo abaixo de 768px) */
+@media (max-width: 768px) {
+
+  /* 1. Faz o container ocupar mais espaço na tela */
+  .container {
+    width: 95%; /* Ocupa 95% da tela, não 80% */
+  }
+
+  /* 2. Faz o menu ficar vertical (empilhado) */
+  nav li {
+    display: block; /* Em vez de inline-block */
+    margin: 10px 0; /* Adiciona espaço vertical */
+  }
+
+  /* 3. Ajusta o tamanho das fontes */
+  h1 {
+    font-size: 1.8rem; /* Diminui o H1 (era 2.5rem) */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Diminui o H2 (era 1.8rem) */
+  }
+
+  /* 4. Esconde o selo "NOVO!" que pode quebrar o layout */
+  .selo {
+    display: none;
+  }
 }

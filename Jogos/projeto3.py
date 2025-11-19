@@ -2,17 +2,23 @@ import pygame
 
 # Inicializando o Pygame
 pygame.init()
+pygame.font.init()
 
 # Definindo as cores (estilo NEON)
 PRETO = (0, 0, 0)
 CIANO_NEON = (0, 255, 255)
 MAGENTA_NEON = (255, 0, 255)
 VERDE_NEON = (57, 255, 20)
+BRANCO = (255, 255, 255)
 
 # Configurações da tela
 largura, altura = 800, 600
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("Guerra de Naves Neon")
+
+# --- 5. Configurações de Pontuação e Fonte ---
+pontuacao = 0
+fonte = pygame.font.Font(None, 36) # Fonte padrão, tamanho 36
 
 # --- Configurações do Jogador ---
 largura_jogador = 50
@@ -91,6 +97,24 @@ while rodando:
         for inimigo in inimigos:
             inimigo.y += descida_inimigo
 
+
+    # Detecção de Colisão
+    # Tiro acerta Inimigo
+    for tiro in tiros[:]:
+        for inimigo in inimigos[:]:
+            if tiro.colliderect(inimigo):
+                tiros.remove(tiro)
+                inimigos.remove(inimigo)
+                pontuacao += 10
+                break # A bala já foi usada
+
+    # Inimigo acerta Jogador (Game Over)
+    for inimigo in inimigos:
+        if inimigo.colliderect(jogador_rect):
+            print(f"GAME OVER! Pontuação final: {pontuacao}")
+            rodando = False
+            break
+
     # --- Desenho na tela ---
     tela.fill(PRETO)
     pygame.draw.rect(tela, CIANO_NEON, jogador_rect)
@@ -101,6 +125,10 @@ while rodando:
     # NOVO: Desenha os inimigos
     for inimigo in inimigos:
         pygame.draw.rect(tela, VERDE_NEON, inimigo)
+
+    # Desenha a Pontuação
+    texto_surface = fonte.render(f"Pontos: {pontuacao}", True, BRANCO)
+    tela.blit(texto_surface, (10, 10))
 
     # Atualizando a tela
     pygame.display.flip()

@@ -125,3 +125,56 @@ body {
     border: 3px solid #f8b500;
     margin-top: 15px; /* Adiciona um pouco de espaço acima da imagem */
 }
+
+/* ------------------------------------------- */
+/* --- MEDIA QUERIES (RESPONSIVIDADE) --- */
+/* ------------------------------------------- */
+
+/* Para telas menores que 768px (a maioria dos tablets e celulares) */
+@media (max-width: 768px) {
+    
+    .container {
+        padding: 20px; /* Reduz o padding do container principal */
+        width: 95%; /* Ocupa quase toda a largura */
+    }
+
+    .title {
+        font-size: 1.5em; /* Reduz o título */
+    }
+
+    /* Reduz o tamanho da roleta para caber melhor */
+    .roulette-wrapper,
+    #roulette-wheel {
+        width: 250px; /* Tamanho reduzido */
+        height: 250px;
+        margin: 15px auto;
+    }
+    
+    #roulette-wheel {
+        border-width: 5px; /* Reduz a borda */
+    }
+
+    /* Reduz o tamanho da seta */
+    .pointer {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid red;
+        top: -25px; 
+    }
+    
+    /* Reduz o texto da dica e o tamanho da imagem */
+    .clue-display {
+        font-size: 1.2em;
+    }
+    
+    #character-image {
+        max-width: 200px;
+        height: 200px;
+    }
+    
+    .btn-spin, .btn-reveal {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
