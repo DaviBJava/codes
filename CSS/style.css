@@ -1,0 +1,32 @@
+/* 1. Cor de fundo da tela inteira */
+body {
+    background-color: lightblue; /* Cor de fundo suave */
+    font-family: Arial, sans-serif; /* Fonte padrão fácil de ler */
+}
+
+/* 2. A caixa do crachá */
+.cracha {
+    background-color: white; /* Fundo da caixa */
+    width: 300px;            /* Largura fixa */
+    
+    /* O comando abaixo centraliza a caixa na tela */
+    margin: 100px auto;      
+    
+    padding: 20px;           /* Espaço interno (para o texto não colar na borda) */
+    border: 5px solid navy;  /* Borda grossa e azul escura */
+    text-align: center;      /* Alinha todo o texto no centro */
+}
+
+/* 3. Estilizando o título pequeno */
+h1 {
+    font-size: 16px;
+    color: gray;
+}
+
+/* 4. Estilizando o Nome do Aluno (Destaque) */
+.nome-aluno {
+    color: red;              /* Cor do texto */
+    text-transform: uppercase; /* Força o texto a ficar EM MAIÚSCULO */
+    border-bottom: 2px dashed black; /* Uma linha pontilhada embaixo do nome */
+    padding-bottom: 10px;
+}
