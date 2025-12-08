@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora JS</title>
+
+    <style>
+    body {
+        background-color: #2c3e50;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex; /* Centraliza na tela */
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .calculadora {
+        background-color: #000; /* Fundo preto estilo dark-mode */
+        padding: 30px;
+        border-radius: 15px;
+        color: white;
+        text-align: center;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    }
+    #resultado {
+        background-color: white;
+        width: 207px;
+        height: 30px;
+        margin: 5px auto;
+        font-size: 25px;
+        color: black;
+        text-align: right;
+        padding: 5px;
+        border-radius: 5px;
+        overflow-x: hidden; /* Esconde se o número for muito grande */
+    }
+    .botao {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #333;
+        color: white;
+        border: none;
+        margin: 2px;
+        border-radius: 5px;
+    }
+    .botao:hover {
+        background-color: #555;
+    }
+</style>
+    </head>
+<body>
+
+    <div class="fundo">
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <tr>
+                    <td><button class="botao" onclick="clean()">C</button></td>
+                    <td><button class="botao" onclick="back()"><</button></td>
+                    <td><button class="botao" onclick="insert('/')">/</button></td>
+                    <td><button class="botao" onclick="insert('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('7')">7</button></td>
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="botao" style="width: 106px;" onclick="insert('0')">0</button></td>
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+    // 1. Função para inserir números e símbolos na tela
+    function insert(num) {
+        let numero = document.getElementById('resultado').innerHTML;
+        document.getElementById('resultado').innerHTML = numero + num;
+    }
+
+    // 2. Função para limpar tudo (C)
+    function clean() {
+        document.getElementById('resultado').innerHTML = "";
+    }
+
+    // 3. Função para apagar apenas o último caractere (<)
+    function back() {
+        let resultado = document.getElementById('resultado').innerHTML;
+        // substring pega do indice 0 até o tamanho total menos 1
+        document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1);
+    }
+
+    // 4. Função que calcula o resultado final (=)
+    function calcular() {
+        let resultado = document.getElementById('resultado').innerHTML;
+        
+        if(resultado) {
+            // eval() é uma função poderosa do JS que resolve a conta matemática escrita em texto
+            document.getElementById('resultado').innerHTML = eval(resultado);
+        } else {
+            document.getElementById('resultado').innerHTML = "Nada...";
+        }
+    }
+</script>
+</body>
+</html>
